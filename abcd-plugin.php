@@ -9,27 +9,36 @@
  * Plugin URI:        https://example.com/plugin-name
  * Description:       Description of the plugin.
  **/
-
 defined ('ABSPATH') or die('You don\'t have access to files');
 
 class abcdPlugin
 {
-    // Activation
-    protected function activate()
+    function __construct()
     {
+        add_action('init', array($this, 'custom_post_type'));
+    }
+    // Activation
+    function activate()
+    {
+        //$this->custom_post_type();
+        flush_rewrite_rules();
 
     }
 
     // Deactivation
-    protected function deactivate()
+    function deactivate()
+    {
+        flush_rewrite_rules();
+    }
+
+    // Uninstall
+    function uninstall()
     {
         
     }
 
-    // Uninstall
-    protected function uninstall()
-    {
-        
+    function custom_post_type() {
+        register_post_type('book', ['public' => true, 'label' => 'Books']);
     }
 
 }
