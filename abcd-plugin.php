@@ -17,10 +17,16 @@ class abcdPlugin
     {
         add_action('init', array($this, 'custom_post_type'));
     }
+
+    function register()
+    {
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue') );  
+    }
+
     // Activation
     function activate()
     {
-        //$this->custom_post_type();
+        $this->custom_post_type();
         flush_rewrite_rules();
 
     }
@@ -41,10 +47,17 @@ class abcdPlugin
         register_post_type('book', ['public' => true, 'label' => 'Books']);
     }
 
+    function enqueue()
+    {
+        wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__));
+        wp_enqueue_style('mypluginscript', plugins_url('/assets/style.css', __FILE__));
+    }
+
 }
 
 if ( class_exists('abcdPlugin') ) {
     $abcdplugin = new abcdPlugin();
+    $abcdplugin->register();
 }
 
 register_activation_hook( __FILE__ , array($abcdplugin, 'activate') );
