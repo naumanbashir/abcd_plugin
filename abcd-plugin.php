@@ -11,6 +11,14 @@
  **/
 defined ('ABSPATH') or die('You don\'t have access to files');
 
+if ( file_exists( dirname( __FILE__ ) . 'vendor/autoload.php' ) )
+{
+    require_once dirname( __FILE__ ) . 'vendor/autoload.php';
+}
+
+use Inc\Activate;
+use Inc\Deactivate;
+
 if ( ! class_exists('abcdPlugin') ) {
 
     class abcdPlugin
@@ -57,15 +65,15 @@ if ( ! class_exists('abcdPlugin') ) {
         // Activation
         function activate()
         {
-            require_once plugin_dir_path(__FILE__).'inc/abcd-plugin-activate.php';
-            AbcdPluginActivate::activate();
+            //require_once plugin_dir_path(__FILE__).'inc/abcd-plugin-activate.php';
+            Activate::activate();
         }
         
         // Deactivation
         function deactivate()
         {
-            require_once plugin_dir_path(__FILE__).'inc/abcd-plugin-deactivate.php';
-            AbcdPluginDeactivate::deactivate();
+            //require_once plugin_dir_path(__FILE__).'inc/abcd-plugin-deactivate.php';
+            Deactivate::deactivate();
         }
         
         function create_post_type()

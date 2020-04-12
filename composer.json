@@ -1,0 +1,17 @@
+{
+    "name": "nauma/abcd-plugin",
+    "description": "Composer for autoloading classes",
+    "type": "project",
+    "license": "GPL",
+    "authors": [{
+        "name": "Nauman Bashir",
+        "email": "nauman.bashir@hotmail.com"
+    }],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Inc\\": "./inc"
+        }
+    }
+}
